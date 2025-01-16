@@ -128,11 +128,11 @@
             android:text="0"
             android:textSize="24sp"/>
         <Button
-            android:id="@+id/button_equals"
+            android:id="@+id/button_decimal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
-            android:text="="
+            android:text=","
             android:textSize="24sp"/>
         <Button
             android:id="@+id/button_divide"
@@ -142,12 +142,12 @@
             android:text="/"
             android:textSize="24sp"/>
         <Button
-            android:id="@+id/button_decimal"
+            android:id="@+id/button_equals"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
-            android:text=","
+            android:layout_columnSpan="4"
+            android:text="="
             android:textSize="24sp"/>
-
     </GridLayout>
 </LinearLayout>
