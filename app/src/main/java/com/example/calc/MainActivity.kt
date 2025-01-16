@@ -1,5 +1,6 @@
 package com.example.calc
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -13,49 +14,50 @@ class MainActivity : ComponentActivity() {
     private var operator: String = ""
     private var firstOperand: Double = 0.0
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.calculatrice)
 
         display = findViewById(R.id.display)
 
-        val button1: Button = findViewById(R.id.button_1)
-        val button2: Button = findViewById(R.id.button_2)
-        val button3: Button = findViewById(R.id.button_3)
-        val button4: Button = findViewById(R.id.button_4)
-        val button5: Button = findViewById(R.id.button_5)
-        val button6: Button = findViewById(R.id.button_6)
-        val button7: Button = findViewById(R.id.button_7)
-        val button8: Button = findViewById(R.id.button_8)
-        val button9: Button = findViewById(R.id.button_9)
-        val button0: Button = findViewById(R.id.button_0)
-        val buttonPlus: Button = findViewById(R.id.button_plus)
-        val buttonMoins: Button = findViewById(R.id.button_minus)
-        val buttonMultiple: Button = findViewById(R.id.button_multiply)
-        val buttonDivise: Button = findViewById(R.id.button_divide)
-        val buttonClear: Button = findViewById(R.id.button_clear)
-        val buttonEgal: Button = findViewById(R.id.button_equals)
-        val buttonDecimal: Button = findViewById(R.id.button_decimal)
+        val button1: Button = findViewById(R.id.button1)
+        val button2: Button = findViewById(R.id.button2)
+        val button3: Button = findViewById(R.id.button3)
+        val button4: Button = findViewById(R.id.button4)
+        val button5: Button = findViewById(R.id.button5)
+        val button6: Button = findViewById(R.id.button6)
+        val button7: Button = findViewById(R.id.button7)
+        val button8: Button = findViewById(R.id.button8)
+        val button9: Button = findViewById(R.id.button9)
+        val button0: Button = findViewById(R.id.button0)
+        val buttonAdd: Button = findViewById(R.id.buttonAdd)
+        val buttonMinus: Button = findViewById(R.id.buttonMinus)
+        val buttonMultiply: Button = findViewById(R.id.buttonMultiply)
+        val buttonDivide: Button = findViewById(R.id.buttonDivide)
+        val buttonClear: Button = findViewById(R.id.buttonClear)
+        val buttonEquals: Button = findViewById(R.id.buttonEquals)
+        val buttonDecimal: Button = findViewById(R.id.buttonDecimal)
 
         fun updateDisplay() {
             display.text = currentInput
         }
 
-        fun appendToInput(value: String) {
+        fun addToInput(value: String) {
             currentInput += value
             updateDisplay()
         }
 
-        button1.setOnClickListener { appendToInput("1") }
-        button2.setOnClickListener { appendToInput("2") }
-        button3.setOnClickListener { appendToInput("3") }
-        button4.setOnClickListener { appendToInput("4") }
-        button5.setOnClickListener { appendToInput("5") }
-        button6.setOnClickListener { appendToInput("6") }
-        button7.setOnClickListener { appendToInput("7") }
-        button8.setOnClickListener { appendToInput("8") }
-        button9.setOnClickListener { appendToInput("9") }
-        button0.setOnClickListener { appendToInput("0") }
+        button1.setOnClickListener { addToInput("1") }
+        button2.setOnClickListener { addToInput("2") }
+        button3.setOnClickListener { addToInput("3") }
+        button4.setOnClickListener { addToInput("4") }
+        button5.setOnClickListener { addToInput("5") }
+        button6.setOnClickListener { addToInput("6") }
+        button7.setOnClickListener { addToInput("7") }
+        button8.setOnClickListener { addToInput("8") }
+        button9.setOnClickListener { addToInput("9") }
+        button0.setOnClickListener { addToInput("0") }
 
         fun setOperator(op: String) {
             if (currentInput.isNotEmpty()) {
@@ -66,10 +68,10 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-        buttonPlus.setOnClickListener { setOperator("+") }
-        buttonMoins.setOnClickListener { setOperator("-") }
-        buttonMultiple.setOnClickListener { setOperator("*") }
-        buttonDivise.setOnClickListener { setOperator("/") }
+        buttonAdd.setOnClickListener { setOperator("+") }
+        buttonMinus.setOnClickListener { setOperator("-") }
+        buttonMultiply.setOnClickListener { setOperator("*") }
+        buttonDivide.setOnClickListener { setOperator("/") }
 
         buttonClear.setOnClickListener {
             currentInput = ""
@@ -80,15 +82,14 @@ class MainActivity : ComponentActivity() {
 
         buttonDecimal.setOnClickListener {
             if (!currentInput.contains(",") && !currentInput.contains(".")) {
-                appendToInput(",")
+                addToInput(",")
             }
         }
 
-        buttonEgal.setOnClickListener {
+        buttonEquals.setOnClickListener {
             if (currentInput.isNotEmpty()) {
                 try {
-                    val inputForCalculation = currentInput.replace(",", ".")
-                    val secondOperand = inputForCalculation.toDouble()
+                    val secondOperand = currentInput.replace(",", ".").toDouble()
 
                     val result = when (operator) {
                         "+" -> firstOperand + secondOperand
